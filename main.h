@@ -14,6 +14,6 @@ int print_hexa_dem(va_list X);
 int print_percent(va_list p);
 int print_reverse(va_list r);
 int print_rot13string(va_list R);
-int _putchar(int c);
+int _putchar(char c);
 
 #endif
