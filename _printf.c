@@ -17,19 +17,14 @@ int _printf(const char *format, ...)
 
 	while (format[i])
 	{
-		for (i = 0; format[i] != '\0'; i++)
+		if (format[i] == '%')
 		{
-			if (format[i] == '%')
+			i++;
+
+			if (format[i] == 'c')
 			{
-				putchar('%');
-				i++;
-			}
-			else
-			{
-				if (format[i] == 'c')
-				{
-					printf("%c", va_arg(args, int));
-					count++;
+				putchar(va_arg(args, int));
+				count++;
 				}
 				else
 				{
@@ -39,11 +34,13 @@ int _printf(const char *format, ...)
 						count++;
 					}
 				}
-				putchar(*format);
+				else
+				{
+					putchar(format[i]);
+					count++;
+				}
 
-				count++;
-			}
-			format++;
+				i++;
 		}
 		va_end(args);
 		return (count);
