@@ -6,7 +6,7 @@ int print_char(va_list c);
 int print_string(va_list s);
 int print_decimal(va_list d);
 int print_binary(va_list b);
-int print_unsigned int(va_list u);
+int print_unsigned_int(va_list);
 int print_int(va_list i);
 int print_octal(va_list o);
 int print_hexa(va_list x);
