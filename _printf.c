@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include "main.h"
@@ -9,29 +10,30 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, count = 0;
+	int i = 0, count = 0, letter = 0;
 
 	va_start(args, format);
 
-	while (format[i])
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == 'c')
 			{
-				putchar(va_arg(args, int));
+				letter = va_arg(args, int);
+				write(1, &letter, 1);
 				count++;
 			}
 			else if (format[i] == 's')
 			{
-				printf("%s", va_arg(args, char*));
+				write(1,va_arg(args, char*), 1);
 				count++;
 			}
 		}
 		else
 		{
-			putchar(format[i]);
+			write(1, &format[i],1);
 			count++;
 		}
 		i++;
