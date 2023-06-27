@@ -2,59 +2,40 @@
 #include <stdarg.h>
 #include "main.h"
 /**
- *  _printf - produces output according to a format.
- *  @format: character string
- *  Return: number of characters printed
+ * _printf - produces output according to a format
+ * @format: character string
+ * Return: number of characters printed 
  */
 
 int _printf(const char *format, ...)
 {
+	va_list args;
 	int i = 0, count = 0;
-
-	va_list(args);
+	
 	va_start(args, format);
-
-	for (i = 0; format[i] != '\0'; i++)
+	
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			i++;
-		}
-		if (format[i] == 'c')
-		{
-			char c = (char) va_arg(args, int);
-
-			putchar(c);
-			count++;
-		}
-		else if (format[i] == 's')
-
-		{
-			char *s = va_arg(args, char *);
-			printf("%s", s);
-
-			count++;
-		}
-		else if (format[i] == '%')
-		{
-			putchar('%');
-			count++;
+			if (format[i] == 'c')
+			{
+				putchar(va_arg(args, int));
+				count++;
+			}
+			else if (format[i] == 's')
+			{
+				printf("%s", va_arg(args, char*));
+				count++;
+			}
 		}
 		else
 		{
 			putchar(format[i]);
 			count++;
 		}
+		i++;
 	}
 	va_end(args);
 	return (count);
-}
-
-int main()
-{
-	char c = 'A';
-	char *s = "Hello, world!";
-	int count = _printf("A char: %c\nA string: %s\nA percent sign: %%\n", c, s);
-	printf("Printed %d characters in total.\n", count);
-	return (0);
 }
