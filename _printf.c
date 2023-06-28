@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, count = 0, letter = 0;
+	int i = 0, count = 0, letter = 0, s = 0;
 
 	va_start(args, format);
 
@@ -27,16 +27,17 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == 's')
 			{
-				write(1,va_arg(args, char*), 1);
+				printf("%s", va_arg(args, char*));
+				write(1, &s, 1);
 				count++;
 			}
 		}
 		else
 		{
-			write(1, &format[i],1);
+			write(1, &format[i], 1);
 			count++;
 		}
-		
+
 	}
 	va_end(args);
 	return (count);
