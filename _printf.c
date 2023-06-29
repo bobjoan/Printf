@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 				write(1, "%", 1);
 				count++;
 			}
-			if (format[i] == 'c')
+			else if (format[i] == 'c')
 			{
 				letter = va_arg(args, int);
 				write(1, &letter, 1);
@@ -42,6 +42,12 @@ int _printf(const char *format, ...)
 				str = va_arg(args, char *);
 				strCount = strings(str);
 				count = count + strCount;
+			}
+			else
+			{
+				write(1, "%", 1);
+				write(1, &format[i], 1);
+				count = count + 2;
 			}
 		}
 		else
