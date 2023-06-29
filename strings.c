@@ -5,7 +5,7 @@
  * @str: ...
  * Return: ...
  */
-int strings(char* str)
+int strings(char *str)
 {
 	int i;
 

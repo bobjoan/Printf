@@ -2,6 +2,6 @@
 #define HEADER_H
 
 int _printf(const char *format, ...);
-int strings(char* str);
+int strings(char *str);
 
 #endif
